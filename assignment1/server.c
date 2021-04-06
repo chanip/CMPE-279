@@ -62,25 +62,25 @@ int main(int argc, char const *argv[])
     else if (pid == 0)
 	{
 		printf("In child process, the process id is %d\n",getpid());
-        if(setuid(65534)== -1)
-        {
-            printf("fail to drop privilege\n");
-            exit(EXIT_FAILURE);
-        }
-        printf("UID: %d\n", getuid());
+        	if(setuid(65534)== -1)
+       	 	{
+            		printf("fail to drop privilege\n");
+            		exit(EXIT_FAILURE);
+        	}
+        	printf("UID: %d\n", getuid());
    		if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0)
   		{
-            perror("accept");
-            printf("accepted");
-            exit(EXIT_FAILURE);
-    	}
+            		perror("accept");
+            		printf("accepted");
+            		exit(EXIT_FAILURE);
+    		}
 		
 		valread = read(new_socket , buffer, 1024);
    		printf("%s\n", buffer);
-    	send(new_socket , hello , strlen(hello) , 0);
-     	printf("Hello message sent\n");
+    		send(new_socket , hello , strlen(hello) , 0);
+     		printf("Hello message sent\n");
 		printf("end of child process\n");	
-     	exit(0);
+     		exit(0);
 	}
         // child process will end above, below two codes are in parent process
     wait(); 
