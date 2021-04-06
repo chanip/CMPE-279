@@ -53,9 +53,12 @@ int main(int argc, char const *argv[])
         perror("listen");
         exit(EXIT_FAILURE);
     }
-    // assignment 1: use other thread to process the connection from the client. (accept and read data)
-
-
+    if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0)
+    {
+        perror("accept");
+        exit(EXIT_FAILURE);
+    }
+    // assignment 1: a part that sets up the socket(bind,listen, accept) and a separate part that processes the data from the client. ( read data)
     pid=fork();
     if (pid < 0)
         printf("error in fork!");
@@ -68,12 +71,6 @@ int main(int argc, char const *argv[])
             		exit(EXIT_FAILURE);
         	}
         	printf("UID: %d\n", getuid());
-   		if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0)
-  		{
-            		perror("accept");
-            		exit(EXIT_FAILURE);
-    		}
-		
 		valread = read(new_socket , buffer, 1024);
    		printf("%s\n", buffer);
     		send(new_socket , hello , strlen(hello) , 0);
