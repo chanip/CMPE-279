@@ -19,8 +19,6 @@ int main(int argc, char const *argv[])
     printf("UID: %d\n", getuid());
 
     pid_t pid;   // new added element 
-    char *user = "nobody"; // new added element 
-
     printf("execve=0x%p\n", execve);
 
     // Creating socket file descriptor
