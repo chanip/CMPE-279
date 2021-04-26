@@ -1,4 +1,4 @@
-#### Homework Assignmentfor CMPE 279
+#### Homework Assignment for CMPE 279
 
 === Team members ===
 
